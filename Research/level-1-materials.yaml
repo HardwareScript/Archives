@@ -1,0 +1,329 @@
+# Hardware Script Level 1: Materials Database
+# Version: 0.1 (Research Phase)
+# Purpose: Physical constants for the core physics engine
+# Temperature: Standard conditions (25°C unless specified)
+
+# =============================================================================
+# GROUP A: CONDUCTORS
+# Purpose: Electrical routing, traces, vias, pads, wire bonding
+# =============================================================================
+
+conductors:
+  
+  copper:
+    name: "Copper"
+    symbol: "Cu"
+    description: "Universal PCB trace material, most common conductor in electronics"
+    type: "Conductor"
+    
+    # Electrical Properties
+    resistivity: 1.68e-8  # Ω·m at 25°C
+    resistivity_unit: "Ohm·m"
+    resistivity_temp_coefficient: 0.00393  # per °C (resistance increases with heat)
+    
+    # Thermal Properties
+    thermal_conductivity: 401  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    melting_point: 1085  # °C
+    melting_point_unit: "Celsius"
+    
+    # Current Capacity
+    max_current_density: 35  # A/mm² for PCB traces (conservative, depends on temp rise)
+    max_current_density_unit: "A/mm²"
+    max_current_density_note: "Based on 10°C temperature rise for 1oz copper"
+    
+    # Physical Properties
+    density: 8960  # kg/m³
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Copper"
+    color_hex: "#B87333"
+    
+    # Sources
+    sources:
+      - "IPC-2221A PCB Design Standard"
+      - "CRC Handbook of Chemistry and Physics"
+
+  gold:
+    name: "Gold"
+    symbol: "Au"
+    description: "Contact pads, wire bonding, corrosion-resistant connections"
+    type: "Conductor"
+    
+    # Electrical Properties
+    resistivity: 2.44e-8  # Ω·m at 25°C
+    resistivity_unit: "Ohm·m"
+    resistivity_temp_coefficient: 0.0034  # per °C
+    
+    # Thermal Properties
+    thermal_conductivity: 318  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    melting_point: 1064  # °C
+    melting_point_unit: "Celsius"
+    
+    # Current Capacity
+    max_current_density: 30  # A/mm² (slightly lower than copper)
+    max_current_density_unit: "A/mm²"
+    
+    # Physical Properties
+    density: 19300  # kg/m³
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Gold"
+    color_hex: "#FFD700"
+    
+    # Sources
+    sources:
+      - "CRC Handbook of Chemistry and Physics"
+      - "IEEE Standards for Wire Bonding"
+
+  aluminum:
+    name: "Aluminum"
+    symbol: "Al"
+    description: "Chip-level routing, heat sinks, lightweight conductors"
+    type: "Conductor"
+    
+    # Electrical Properties
+    resistivity: 2.82e-8  # Ω·m at 25°C
+    resistivity_unit: "Ohm·m"
+    resistivity_temp_coefficient: 0.0039  # per °C
+    
+    # Thermal Properties
+    thermal_conductivity: 237  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    melting_point: 660  # °C
+    melting_point_unit: "Celsius"
+    
+    # Current Capacity
+    max_current_density: 20  # A/mm² (lower than copper due to higher resistivity)
+    max_current_density_unit: "A/mm²"
+    
+    # Physical Properties
+    density: 2700  # kg/m³ (much lighter than copper)
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Silver"
+    color_hex: "#C0C0C0"
+    
+    # Sources
+    sources:
+      - "CRC Handbook of Chemistry and Physics"
+      - "Semiconductor Industry Association Standards"
+
+# =============================================================================
+# GROUP B: INSULATORS / SUBSTRATES
+# Purpose: PCB boards, isolation, ambient environment, chip dielectrics
+# =============================================================================
+
+insulators:
+  
+  fr4:
+    name: "FR4 Fiberglass"
+    symbol: "FR4"
+    description: "Standard PCB substrate material (flame retardant fiberglass epoxy)"
+    type: "Insulator"
+    
+    # Electrical Properties
+    dielectric_strength: 20  # kV/mm (breakdown voltage)
+    dielectric_strength_unit: "kV/mm"
+    relative_permittivity: 4.5  # εᵣ (dimensionless, affects capacitance)
+    relative_permittivity_unit: "dimensionless"
+    dissipation_factor: 0.02  # Loss tangent at 1 MHz
+    
+    # Thermal Properties
+    thermal_conductivity: 0.3  # W/(m·K) (poor conductor, good insulator)
+    thermal_conductivity_unit: "W/(m·K)"
+    thermal_resistance: 3.33  # K/W per mm thickness
+    thermal_resistance_unit: "K/W"
+    glass_transition_temp: 130  # °C (Tg, where material softens)
+    glass_transition_temp_unit: "Celsius"
+    max_operating_temp: 130  # °C
+    max_operating_temp_unit: "Celsius"
+    
+    # Physical Properties
+    density: 1850  # kg/m³
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Green"
+    color_hex: "#2E7D32"
+    
+    # Sources
+    sources:
+      - "IPC-4101 Specification for Base Materials"
+      - "FR4 Material Datasheet (Isola, Rogers)"
+
+  air:
+    name: "Air"
+    symbol: "Air"
+    description: "Ambient environment, used for spark gap and clearance calculations"
+    type: "Insulator"
+    
+    # Electrical Properties
+    dielectric_strength: 3.0  # kV/mm (breakdown voltage, varies with humidity)
+    dielectric_strength_unit: "kV/mm"
+    dielectric_strength_note: "At sea level, 50% humidity. Decreases at altitude."
+    relative_permittivity: 1.00059  # εᵣ (essentially 1, reference value)
+    relative_permittivity_unit: "dimensionless"
+    
+    # Thermal Properties
+    thermal_conductivity: 0.026  # W/(m·K) at 25°C
+    thermal_conductivity_unit: "W/(m·K)"
+    
+    # Physical Properties
+    density: 1.225  # kg/m³ at sea level, 15°C
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Transparent"
+    color_hex: "#00000000"
+    
+    # Sources
+    sources:
+      - "IEC 60664-1 Insulation Coordination Standard"
+      - "Paschen's Law for Gas Breakdown"
+
+  silicon_dioxide:
+    name: "Silicon Dioxide"
+    symbol: "SiO₂"
+    description: "Glass insulator used in microchips between metal layers"
+    type: "Insulator"
+    
+    # Electrical Properties
+    dielectric_strength: 10  # kV/mm (very high breakdown voltage)
+    dielectric_strength_unit: "kV/mm"
+    relative_permittivity: 3.9  # εᵣ (low-k dielectric)
+    relative_permittivity_unit: "dimensionless"
+    
+    # Thermal Properties
+    thermal_conductivity: 1.4  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    melting_point: 1710  # °C
+    melting_point_unit: "Celsius"
+    
+    # Physical Properties
+    density: 2200  # kg/m³
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Transparent"
+    color_hex: "#F0F0F0"
+    
+    # Sources
+    sources:
+      - "ITRS Semiconductor Roadmap"
+      - "Sze & Ng, Physics of Semiconductor Devices"
+
+# =============================================================================
+# GROUP C: SEMICONDUCTORS & RESISTIVES
+# Purpose: Transistors, diodes, resistors, active components
+# =============================================================================
+
+semiconductors:
+  
+  silicon_doped:
+    name: "Silicon (Doped)"
+    symbol: "Si"
+    description: "Semiconductor material for transistors and diodes"
+    type: "Semiconductor"
+    
+    # Electrical Properties
+    bandgap: 1.12  # eV at 300K (energy to free an electron)
+    bandgap_unit: "eV"
+    bandgap_note: "Intrinsic silicon at room temperature"
+    
+    # Carrier Properties
+    electron_mobility: 1400  # cm²/(V·s) for n-type
+    electron_mobility_unit: "cm²/(V·s)"
+    hole_mobility: 450  # cm²/(V·s) for p-type
+    hole_mobility_unit: "cm²/(V·s)"
+    
+    # Doping Levels (typical)
+    n_type_doping: 1e16  # atoms/cm³ (phosphorus, arsenic)
+    n_type_doping_unit: "atoms/cm³"
+    p_type_doping: 1e16  # atoms/cm³ (boron)
+    p_type_doping_unit: "atoms/cm³"
+    
+    # Thermal Properties
+    thermal_conductivity: 150  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    melting_point: 1414  # °C
+    melting_point_unit: "Celsius"
+    
+    # Physical Properties
+    density: 2329  # kg/m³
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Gray"
+    color_hex: "#808080"
+    
+    # Sources
+    sources:
+      - "Sze & Ng, Physics of Semiconductor Devices (3rd Ed)"
+      - "Streetman & Banerjee, Solid State Electronic Devices"
+
+resistive_materials:
+  
+  carbon_film:
+    name: "Carbon Film"
+    symbol: "C"
+    description: "Standard resistor material, stable and inexpensive"
+    type: "Resistive"
+    
+    # Electrical Properties
+    resistivity: 3.5e-5  # Ω·m (highly variable, depends on film thickness)
+    resistivity_unit: "Ohm·m"
+    resistivity_note: "Typical value for thin film resistors"
+    temp_coefficient: 200e-6  # ppm/°C (parts per million per degree)
+    temp_coefficient_unit: "ppm/°C"
+    temp_coefficient_note: "Resistance changes ~200 ppm per °C"
+    
+    # Thermal Properties
+    thermal_conductivity: 1.7  # W/(m·K)
+    thermal_conductivity_unit: "W/(m·K)"
+    max_operating_temp: 155  # °C
+    max_operating_temp_unit: "Celsius"
+    
+    # Power Handling
+    max_power_density: 50  # W/cm² (depends on substrate and cooling)
+    max_power_density_unit: "W/cm²"
+    
+    # Physical Properties
+    density: 2000  # kg/m³ (approximate, varies with binder)
+    density_unit: "kg/m³"
+    
+    # Visual
+    color: "Black"
+    color_hex: "#000000"
+    
+    # Sources
+    sources:
+      - "Vishay Resistor Product Specifications"
+      - "IEC 60115 Fixed Resistors Standard"
+
+# =============================================================================
+# METADATA
+# =============================================================================
+
+metadata:
+  version: "0.1"
+  status: "Research Phase"
+  last_updated: "2026-03-13"
+  temperature_standard: "25°C (298K)"
+  pressure_standard: "1 atm (101.325 kPa)"
+  notes:
+    - "All values are at standard conditions unless specified"
+    - "Current densities assume adequate cooling and thermal management"
+    - "Dielectric strengths vary with thickness, frequency, and environment"
+    - "These are engineering approximations suitable for MVP validation"
+  
+  future_materials:
+    - "Tungsten (for vias in advanced silicon)"
+    - "Polyimide (flexible PCB substrate)"
+    - "Gallium Arsenide (high-frequency semiconductors)"
+    - "Silicon Carbide (high-power semiconductors)"
+    - "Graphene (future conductor research)"

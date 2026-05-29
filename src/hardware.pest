@@ -1,0 +1,54 @@
+// Hardware Script Grammar
+
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+COMMENT = _{ "//" ~ (!"\n" ~ ANY)* }
+
+// Basic tokens
+string = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+number = @{ ASCII_DIGIT+ }
+measure = @{ ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT+)? ~ ("mm" | "cm" | "V" | "A") }
+identifier = @{ ASCII_ALPHA ~ (ASCII_ALPHANUMERIC | "_")* }
+dotted_identifier = @{ identifier ~ ("." ~ identifier)+ }
+coordinate = { "[" ~ number ~ "," ~ number ~ "," ~ number ~ "]" }
+
+// Keywords (silenced with _)
+define = _{ "define" }
+space_kw = _{ "Space" }
+dimensions_kw = _{ "dimensions" }
+grid_kw = _{ "grid" }
+add_kw = _{ "add" }
+named_kw = _{ "named" }
+at_kw = _{ "at" }
+rotated_kw = _{ "rotated" }
+route_kw = _{ "route" }
+to_kw = _{ "to" }
+path_kw = _{ "path" }
+by_kw = _{ "by" }
+
+// Rotation directions
+rotation = { "North" | "East" | "South" | "West" }
+
+// Space definition - keywords silenced, only data remains
+space_def = {
+    define ~ space_kw ~ string ~ ":" ~
+    dimensions_kw ~ ":" ~ measure ~ by_kw ~ measure ~ by_kw ~ measure ~
+    grid_kw ~ ":" ~ number ~ by_kw ~ number ~ by_kw ~ number
+}
+
+// Component placement - keywords silenced
+component_placement = {
+    add_kw ~ identifier ~ named_kw ~ identifier ~ 
+    at_kw ~ coordinate ~ rotated_kw ~ rotation
+}
+
+// Route definition - keywords silenced
+waypoint = { "-" ~ coordinate }
+route_def = {
+    route_kw ~ (dotted_identifier | identifier) ~ to_kw ~ (dotted_identifier | identifier) ~ ":" ~
+    path_kw ~ ":" ~
+    waypoint+
+}
+
+// Top-level program
+statement = _{ space_def | component_placement | route_def }
+program = { SOI ~ statement* ~ EOI }

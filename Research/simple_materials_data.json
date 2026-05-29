@@ -1,0 +1,42 @@
+{
+  "Cu": {
+    "formula_pretty": "Cu",
+    "density": 0.187398436304439,
+    "material_id": "mp-1056079",
+    "is_stable": false,
+    "band_gap": 0,
+    "is_metal": true
+  },
+  "Au": {
+    "formula_pretty": "Au",
+    "density": 16.730993180447804,
+    "material_id": "mp-1238808",
+    "is_stable": false,
+    "band_gap": 0.0,
+    "is_metal": true
+  },
+  "Al": {
+    "formula_pretty": "Al",
+    "density": 2.532974864040623,
+    "material_id": "mp-1244953",
+    "is_stable": false,
+    "band_gap": 0.0,
+    "is_metal": true
+  },
+  "SiO2": {
+    "formula_pretty": "SiO2",
+    "density": 2.082094202127012,
+    "material_id": "mp-1244945",
+    "is_stable": false,
+    "band_gap": 5.016999999999999,
+    "is_metal": false
+  },
+  "Si": {
+    "formula_pretty": "Si",
+    "density": 2.599954373928591,
+    "material_id": "mp-1244933",
+    "is_stable": false,
+    "band_gap": 0.0,
+    "is_metal": true
+  }
+}

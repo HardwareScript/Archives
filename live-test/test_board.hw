@@ -1,0 +1,11 @@
+space Name:
+    dimensions: 20mm by 20mm by 2mm
+    grid: 20 by 20 by 2
+
+add Transistor_NPN named MainSwitch at [1, 5, 5] rotated North
+
+route MainSwitch.Collector to Power.Out:
+    path:
+        - [1, 5, 6]
+        -[1, 15, 6]
+        - [1, 15, 15]

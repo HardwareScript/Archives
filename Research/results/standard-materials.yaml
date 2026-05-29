@@ -1,0 +1,122 @@
+conductors:
+  aluminum:
+    band_gap_eV: 0.0
+    color_hex: '#C0C0C0'
+    density_g_cm3: 2.532974864040623
+    density_kg_m3: 2532.974864040623
+    description: Chip-level routing, heat sinks
+    is_metal: true
+    materials_project_id: mp-1244953
+    max_current_density_a_mm2: 20
+    melting_point_c: 660
+    name: Aluminum
+    resistivity_ohm_m: 2.82e-08
+    symbol: Al
+    thermal_conductivity_w_mk: 237
+  copper:
+    band_gap_eV: 0
+    color_hex: '#B87333'
+    density_g_cm3: 8.96
+    density_kg_m3: 8960.0
+    description: Universal PCB trace material
+    is_metal: true
+    materials_project_id: mp-1056079
+    max_current_density_a_mm2: 35
+    melting_point_c: 1085
+    name: Copper
+    resistivity_ohm_m: 1.68e-08
+    symbol: Cu
+    thermal_conductivity_w_mk: 401
+  gold:
+    band_gap_eV: 0.0
+    color_hex: '#FFD700'
+    density_g_cm3: 16.730993180447804
+    density_kg_m3: 16730.993180447804
+    description: Contact pads, wire bonding, corrosion-resistant
+    is_metal: true
+    materials_project_id: mp-1238808
+    max_current_density_a_mm2: 30
+    melting_point_c: 1064
+    name: Gold
+    resistivity_ohm_m: 2.44e-08
+    symbol: Au
+    thermal_conductivity_w_mk: 318
+insulators:
+  air:
+    color_hex: '#00000000'
+    density_g_cm3: 0.001225
+    density_kg_m3: 1.225
+    description: Ambient environment, spark gap calculations
+    dielectric_strength_kv_mm: 3.0
+    dielectric_strength_note: At sea level, 50% humidity. Decreases at altitude.
+    materials_project_id: null
+    name: Air
+    relative_permittivity: 1.00059
+    symbol: Air
+    thermal_conductivity_w_mk: 0.026
+  fr4:
+    color_hex: '#2E7D32'
+    density_g_cm3: 1.85
+    density_kg_m3: 1850
+    description: Standard PCB substrate material (flame retardant fiberglass epoxy)
+    dielectric_strength_kv_mm: 20
+    dissipation_factor: 0.02
+    glass_transition_temp_c: 130
+    materials_project_id: null
+    max_operating_temp_c: 130
+    name: FR4 Fiberglass
+    relative_permittivity: 4.5
+    symbol: FR4
+    thermal_conductivity_w_mk: 0.3
+  silicon_dioxide:
+    band_gap_eV: 5.016999999999999
+    color_hex: '#F0F0F0'
+    density_g_cm3: 2.082094202127012
+    density_kg_m3: 2082.094202127012
+    description: Microchip insulator, glass substrate
+    dielectric_strength_kv_mm: 10
+    is_metal: false
+    materials_project_id: mp-1244945
+    name: Silicon Dioxide
+    relative_permittivity: 3.9
+    symbol: SiO2
+    thermal_conductivity_w_mk: 1.4
+metadata:
+  last_updated: '2026-03-13'
+  sources:
+  - Materials Project API
+  - Engineering handbooks
+  - Manufacturer datasheets
+  status: Enhanced with Materials Project data
+  version: '0.2'
+resistive_materials:
+  carbon_film:
+    color_hex: '#000000'
+    density_g_cm3: 2.0
+    density_kg_m3: 2000
+    description: Standard resistor material, stable and inexpensive
+    materials_project_id: null
+    max_operating_temp_c: 155
+    max_power_density_w_cm2: 50
+    name: Carbon Film
+    resistivity_note: Typical value for thin film resistors
+    resistivity_ohm_m: 3.5e-05
+    symbol: C
+    temp_coefficient_note: "Resistance changes ~200 ppm per \xB0C"
+    temp_coefficient_ppm_c: 200
+    thermal_conductivity_w_mk: 1.7
+semiconductors:
+  silicon:
+    band_gap_eV: 1.12
+    band_gap_note: Intrinsic silicon at 300K (MP data shows 0.0, corrected to 1.12)
+    color_hex: '#808080'
+    density_g_cm3: 2.599954373928591
+    density_kg_m3: 2599.954373928591
+    description: Transistors, diodes, semiconductor devices
+    electron_mobility_cm2_vs: 1400
+    hole_mobility_cm2_vs: 450
+    is_metal: false
+    materials_project_id: mp-1244933
+    name: Silicon (Doped)
+    symbol: Si
+    thermal_conductivity_w_mk: 150

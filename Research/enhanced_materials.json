@@ -1,0 +1,138 @@
+{
+  "metadata": {
+    "version": "0.2",
+    "status": "Enhanced with Materials Project data",
+    "last_updated": "2026-03-13",
+    "sources": [
+      "Materials Project API",
+      "Engineering handbooks",
+      "Manufacturer datasheets"
+    ]
+  },
+  "conductors": {
+    "copper": {
+      "name": "Copper",
+      "symbol": "Cu",
+      "materials_project_id": "mp-1056079",
+      "description": "Universal PCB trace material",
+      "density_g_cm3": 8.96,
+      "density_kg_m3": 8960.0,
+      "resistivity_ohm_m": 1.68e-08,
+      "is_metal": true,
+      "band_gap_eV": 0,
+      "thermal_conductivity_w_mk": 401,
+      "melting_point_c": 1085,
+      "max_current_density_a_mm2": 35,
+      "color_hex": "#B87333"
+    },
+    "gold": {
+      "name": "Gold",
+      "symbol": "Au",
+      "materials_project_id": "mp-1238808",
+      "description": "Contact pads, wire bonding, corrosion-resistant",
+      "density_g_cm3": 16.730993180447804,
+      "density_kg_m3": 16730.993180447804,
+      "resistivity_ohm_m": 2.44e-08,
+      "is_metal": true,
+      "band_gap_eV": 0.0,
+      "thermal_conductivity_w_mk": 318,
+      "melting_point_c": 1064,
+      "max_current_density_a_mm2": 30,
+      "color_hex": "#FFD700"
+    },
+    "aluminum": {
+      "name": "Aluminum",
+      "symbol": "Al",
+      "materials_project_id": "mp-1244953",
+      "description": "Chip-level routing, heat sinks",
+      "density_g_cm3": 2.532974864040623,
+      "density_kg_m3": 2532.974864040623,
+      "resistivity_ohm_m": 2.82e-08,
+      "is_metal": true,
+      "band_gap_eV": 0.0,
+      "thermal_conductivity_w_mk": 237,
+      "melting_point_c": 660,
+      "max_current_density_a_mm2": 20,
+      "color_hex": "#C0C0C0"
+    }
+  },
+  "insulators": {
+    "silicon_dioxide": {
+      "name": "Silicon Dioxide",
+      "symbol": "SiO2",
+      "materials_project_id": "mp-1244945",
+      "description": "Microchip insulator, glass substrate",
+      "density_g_cm3": 2.082094202127012,
+      "density_kg_m3": 2082.094202127012,
+      "band_gap_eV": 5.016999999999999,
+      "is_metal": false,
+      "dielectric_strength_kv_mm": 10,
+      "relative_permittivity": 3.9,
+      "thermal_conductivity_w_mk": 1.4,
+      "color_hex": "#F0F0F0"
+    },
+    "fr4": {
+      "name": "FR4 Fiberglass",
+      "symbol": "FR4",
+      "materials_project_id": null,
+      "description": "Standard PCB substrate material (flame retardant fiberglass epoxy)",
+      "density_g_cm3": 1.85,
+      "density_kg_m3": 1850,
+      "dielectric_strength_kv_mm": 20,
+      "relative_permittivity": 4.5,
+      "dissipation_factor": 0.02,
+      "thermal_conductivity_w_mk": 0.3,
+      "glass_transition_temp_c": 130,
+      "max_operating_temp_c": 130,
+      "color_hex": "#2E7D32"
+    },
+    "air": {
+      "name": "Air",
+      "symbol": "Air",
+      "materials_project_id": null,
+      "description": "Ambient environment, spark gap calculations",
+      "density_g_cm3": 0.001225,
+      "density_kg_m3": 1.225,
+      "dielectric_strength_kv_mm": 3.0,
+      "dielectric_strength_note": "At sea level, 50% humidity. Decreases at altitude.",
+      "relative_permittivity": 1.00059,
+      "thermal_conductivity_w_mk": 0.026,
+      "color_hex": "#00000000"
+    }
+  },
+  "semiconductors": {
+    "silicon": {
+      "name": "Silicon (Doped)",
+      "symbol": "Si",
+      "materials_project_id": "mp-1244933",
+      "description": "Transistors, diodes, semiconductor devices",
+      "density_g_cm3": 2.599954373928591,
+      "density_kg_m3": 2599.954373928591,
+      "band_gap_eV": 1.12,
+      "band_gap_note": "Intrinsic silicon at 300K (MP data shows 0.0, corrected to 1.12)",
+      "is_metal": false,
+      "electron_mobility_cm2_vs": 1400,
+      "hole_mobility_cm2_vs": 450,
+      "thermal_conductivity_w_mk": 150,
+      "color_hex": "#808080"
+    }
+  },
+  "resistive_materials": {
+    "carbon_film": {
+      "name": "Carbon Film",
+      "symbol": "C",
+      "materials_project_id": null,
+      "description": "Standard resistor material, stable and inexpensive",
+      "density_g_cm3": 2.0,
+      "density_kg_m3": 2000,
+      "resistivity_ohm_m": 3.5e-05,
+      "resistivity_note": "Typical value for thin film resistors",
+      "temp_coefficient_ppm_c": 200,
+      "temp_coefficient_note": "Resistance changes ~200 ppm per \u00b0C",
+      "thermal_conductivity_w_mk": 1.7,
+      "max_operating_temp_c": 155,
+      "max_power_density_w_cm2": 50,
+      "color_hex": "#000000"
+    }
+  }
+}

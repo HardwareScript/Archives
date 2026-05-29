@@ -1,0 +1,20 @@
+space Name:
+    dimensions: 50mm by 50mm by 2mm
+    grid: 50 by 50 by 4
+
+add Transistor_NPN named Q1 at [1, 10, 10] rotated North
+add Transistor_NPN named Q2 at [1, 30, 30] rotated East
+
+route Q1.Emitter to Q2.Base:
+    path:
+        - [1, 12, 11]
+        - [1, 20, 11]
+        - [1, 20, 28]
+        - [1, 31, 28]
+        - [1, 31, 30]
+
+route Q2.Collector to Power.GND:
+    path:
+        - [1, 30, 33]
+        - [1, 30, 40]
+        - [2, 30, 40]

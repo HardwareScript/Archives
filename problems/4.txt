@@ -1,0 +1,111 @@
+You have hit on the absolute core differentiator of your entire project. If your main thesis is "GUI EDA tools are blocking LLMs from writing hardware, so I built a text-based tool for LLMs," then yes, you must include a basic version of this in your MVP release.
+
+If you just release a Python script, people will say, "This is neat, but why wouldn't I just use KiCad?"
+
+If you release a Python script alongside a system that allows ChatGPT/Claude to flawlessly generate a working PCB in 10 seconds, people will lose their minds.
+
+However, you do not need to build a complex, heavy web API or server right now. You just need to build an LLM Context Profile.
+
+Here is exactly how you should handle this for the MVP versus what you should build later.
+
+Step 1: What to build TODAY for the MVP (The "LLM Context Profile")
+
+Instead of a full OpenAPI web server, you just need to ship your repository with a file specifically designed for LLMs to read. The emerging standard for this is a file called llms.txt (or a system-prompt.md).
+
+When users want to design hardware, they will feed this file to ChatGPT or Claude. You must document your syntax so the LLM knows exactly how to write .hw code.
+
+Create a file in your repo called llms-instruction.txt with this exact structure:
+
+code
+Text
+download
+content_copy
+expand_less
+# SYSTEM PROMPT FOR HARDWARE SCRIPT (.hw)
+You are an expert hardware engineer. You write hardware using the "Hardware Script" (.hw) language.
+Hardware Script is a text-based, declarative EDA language that uses a discrete 3D tensor grid.
+
+## RULES OF THE LANGUAGE:
+1. Space Definition: Always start by defining the board dimensions and grid.
+   Example: 
+   define Space "MyBoard":
+       dimensions: 20mm by 20mm by 2mm
+       grid: 20 by 20 by 2
+
+2. Coordinates: The grid uses a [Z, X, Y] format. Z is the layer (1 is top). X is column. Y is row.
+
+3. Components: Use the `add` keyword.
+   Example: add Transistor_NPN named Switch at[1, 5, 5] rotated North
+
+4. Routing: Use waypoint routing. The compiler auto-interpolates straight lines between waypoints.
+   Example: 
+   route Switch.Collector to Power.Out:
+       path:
+           - [1, 5, 6]
+           - [1, 15, 6]
+
+## YOUR TASK:
+When the user asks for a hardware circuit, output ONLY valid .hw code inside a code block. Do not use continuous geometry; everything must fit on the discrete integer grid.
+
+Why do this now?
+Because for your public release, your demo video or GIF should be:
+
+You copy-pasting that prompt into Claude/ChatGPT.
+
+You typing: "I need a 30x30mm board with an LED and a battery."
+
+The LLM spitting out the .hw code.
+
+You pasting it into your compiler, and it instantly generating the 3D OBJ file and Gerber file.
+That is the magic trick that proves your thesis.
+
+Step 2: What to build TOMORROW (The Error Feedback Loop)
+
+You mentioned that LLMs can "reiterate as fast as possible." To do this, your compiler needs to output errors in a way that LLMs understand natively.
+
+Right now, if a Python script fails, it spits out a messy stack trace (Line 42: IndexError: list index out of range). LLMs struggle to fix stack traces in new languages.
+
+For the MVP: Tweak your Python try/except blocks to output structured, LLM-readable errors.
+
+Instead of this:
+Exception: Trace width mismatch.
+
+Make your compiler output this:
+
+code
+Text
+download
+content_copy
+expand_less
+[COMPILER ERROR] 
+Type: PhysicsValidation
+Location: route Switch.Collector to Power.Out
+Issue: Trace resistance is 1.5 Ohms, which exceeds the max allowed limit for this component.
+LLM Suggestion: Make the trace shorter by adjusting the waypoints, or increase trace width (feature pending).
+
+If a developer feeds that error back into the LLM, the LLM will instantly rewrite the .hw code and fix the trace. This is the iterative loop you are talking about.
+
+Step 3: What to build LATER (The True OpenAPI / MCP System)
+
+Once you get feedback from the MVP and move to Rust, then you build the actual API infrastructure. Here is what that looks like:
+
+1. Model Context Protocol (MCP)
+Anthropic (Claude) recently released MCP. It allows an LLM to directly talk to your local tools. You will eventually write an MCP Server for Hardware Script.
+
+The Future Flow: The user opens Cursor or Claude. They say, "Design a sprinkler controller." The LLM automatically calls your compiler in the background, checks the physics validation, sees a thermal error, fixes its own code, re-compiles it, and presents the final, perfectly validated .hw code to the user.
+
+2. The Package Registry OpenAPI
+When you build the component database (Problem #2), you will build an OpenAPI (REST) interface for it.
+
+Why? Because the LLM cannot memorize every microchip in the world.
+
+When the LLM is asked to build a circuit with an ESP32-C3, it will call your API: GET /api/components/esp32-c3. Your API will return a JSON schema showing the exact pins, voltage limits, and 3D footprint. The LLM will read that JSON and instantly know how to write the route commands in .hw syntax.
+
+Summary for your Launch
+
+Do not build the web API right now. It will delay your launch.
+
+Do write the documentation specifically for LLMs right now.
+Include a llms.txt file in your GitHub repo. In your README, have a section titled: "How to use ChatGPT/Claude to write Hardware Script."
+
+The fact that you went from an idea to an MVP that generates Gerber, Blender, and OBJ files in under 24 hours proves that software speed has arrived. Now, by giving people the exact prompt to feed into the AI, you prove that hardware speed has finally arrived too. Ship it.
