@@ -66,7 +66,7 @@ This document provides a step-by-step guide for migrating Hardware Script from a
 1. **Create organization**:
    - Go to https://github.com/organizations/new
    - Organization name: `hwsl-lang`
-   - Email: `hwsl.dev@gmail.com`
+   - Email: `hardwarescript@gmail.com`
    - Plan: Free (public repositories)
 
 2. **Configure organization settings**:
@@ -578,7 +578,7 @@ This repository is now archived and read-only.
 
 - [ ] Set up community Discord server
 - [ ] Create Twitter account (@hwsl_lang)
-- [ ] Set up email (hwsl.dev@gmail.com)
+- [ ] Set up email (hardwarescript@gmail.com)
 - [ ] Create FUNDING.yml for GitHub Sponsors
 - [ ] Add badges to README (build status, license, etc.)
 
