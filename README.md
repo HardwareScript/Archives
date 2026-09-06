@@ -1,3 +1,19 @@
+> [!CAUTION]
+> ## ⚰️ PROJECT PERMANENTLY TERMINATED — SEPTEMBER 2026
+>
+> **HardwareScript has been permanently shut down and archived.**
+>
+> After 9 months of development, the project was permanently terminated. This entire repository is now an archive. The materials here — Python prototypes, early Rust experiments, research databases — are **historical artifacts only**.
+>
+> - The active compiler (`hwc`), desktop app (`hsm`), and all tooling are **permanently decommissioned**.
+> - **No further development, issues, or PRs will be accepted on any component.**
+>
+> For the full technical post-mortem, see [`Docs/End/Final-Status.md`](../Docs/End/Final-Status.md).
+>
+> *HardwareScript Architecture Team — September 2026*
+
+---
+
 # Hardware Script — Archives
 
 **⚠️ HISTORICAL REFERENCE — NOT PART OF THE ACTIVE CODEBASE**
